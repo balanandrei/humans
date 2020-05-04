@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import SignIn from '../views/SignIn.vue'
 import Dashboard from '../views/Dashboard.vue'
-// import store from '@/store'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -16,19 +16,28 @@ Vue.use(VueRouter)
   {
     path: '/signin',
     name: 'signin',
-    component: SignIn
+    component: SignIn,
+    beforeEnter: (to, from, next) => {
+      if(store.getters['auth/loggedIn']) {
+        return next({
+          name: 'dashboard'
+        })
+      }
+      next()
+    }
   },
   {
     path: '/dashboard',
     name: 'dashboard',
     component: Dashboard,
-    // beforeEnter: (next) => {
-    //   if(!store.getters['auth/loggedIn']) {
-    //     return next({
-    //       name: 'signin'
-    //     })
-    //   }
-    // }
+    beforeEnter: (to, from, next) => {
+      if(!store.getters['auth/loggedIn']) {
+        return next({
+          name: 'signin'
+        })
+      }
+      next()
+    }
   }
 ]
 

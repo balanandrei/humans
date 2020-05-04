@@ -42,12 +42,11 @@ export default {
         }
         };
 
-        await axios(options)
-        .then(response => {
-            return dispatch('attempt', {
-                token: response.data.token,
-                user_id: response.data.user_id
-            })
+        let response = await axios(options);
+
+        return dispatch('attempt', {
+            token: response.data.token,
+            user_id: response.data.user_id
         });
     },
 

@@ -40,19 +40,12 @@ export default {
         }
     },
     methods: {
-        // async submit() {
-        //     let response = axios.post('login/', this.form, {
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         }
-        //     });
-        //     console.log(response.data, 'responsedata');
-        // },
         ...mapActions({
             signIn: 'auth/signIn'
         }),
         submit() {
             this.signIn(this.form).then(() => {
+                console.log('this.form', this.form)
                 this.$router.replace({
                     name: 'dashboard'
                 }) 
