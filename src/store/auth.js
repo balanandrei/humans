@@ -68,7 +68,6 @@ export default {
             });
         }
         catch(e) {
-            console.log('error');
             commit('SET_TOKEN', null);
             commit('SET_USER', null);
         }
