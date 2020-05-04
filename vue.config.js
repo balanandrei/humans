@@ -1,7 +1,6 @@
-// // // vue.config.js
-// module.exports = {
-//     // options...
-//     devServer: {
-//           proxy: 'https://api.heyhello.ro/api',
-//       }
-//   }
+module.exports = {
+    publicPath: process.env.NODE_ENV === 'production'
+      ? '/humans/'
+      : '/'
+  }
+  
